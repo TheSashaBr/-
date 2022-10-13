@@ -25,9 +25,9 @@ def multiplication(x, y, z):
             print("Молодец, правильно!")
             correct_answers += 1
             duplicate_numbers.append(action)
-            if answer != right_answer:
-                print("Ты ошибся,(лась)!")
-                print("Правильный ответ -", right_answer)
+        if answer != right_answer:
+            print("Ты ошибся,(лась)!")
+            print("Правильный ответ -", right_answer)
             total_responses += 1
             if total_responses % z == 0:
                 print("Количество правильных ответов - ", correct_answers)
