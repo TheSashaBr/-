@@ -156,47 +156,30 @@ def subtraction():
 
 if lvl == 'тренировка':
     if action == '*': #умножение
-        while True:
-            multiplication(x = 0, y = 10, z = 10)
+        multiplication(x = 0, y = 10, z = 10)
     if action == ':': #деление
-        while True:
-            division(x = 11)
-  
+        division(x = 11)
     if action == '+': #сложение до нуля
-        while True:
-            addition()
+        addition()
     if action == '-': #вычитание до нуля
-        while True:
-            subtraction()
+        subtraction()
 
 if lvl == 'контроль':
     if action == '*': #умножение
-        while True:
-            multiplication(x = 0, y = 10)
-
+        multiplication(x = 0, y = 10)
     if action == ':': #деление
-        while True:
-            division(x = 11)
-
+        division(x = 11)
     if action == '+': #сложение до нуля
-        while True:
-            addition()
+        addition()
     if action == '-': #вычитание до нуля
-        while True:
-            subtraction()
+        subtraction()
 
 if lvl == 'итоговый тест':
     if action == '*': #умножение
-        while True:
-            multiplication(x = 0, y = 100, z = 100)
-
+        multiplication(x = 0, y = 100, z = 100)
     if action == ':': #деление
-        while True:
-            division(x = 100)
+        division(x = 100)
     if action == '+': #сложение до нуля
-        while True:
-            addition()
-
+        addition()
     if action == '-': #вычитание до нуля
-        while True:
-            subtraction()
+        subtraction()
