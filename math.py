@@ -10,11 +10,10 @@ incorrect_answer = 0 #неправильных ответов
 action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
 number = int(input("Введите число с которым вы хотите играть"))
 
-duplicate_numbers = []
-
 def multiplication(x, y, z):
     correct_answers = 0
     total_responses = 0  #всего ответов
+    duplicate_numbers = []
     while True:
         action = randint(x, y)
         while action in duplicate_numbers:
@@ -52,6 +51,7 @@ def division(x):
     while True:
         correct_answers = 0
         total_responses = 0  #всего ответов
+        duplicate_numbers = []
         multiplication_boundary = number * 10
         action = randint(0, multiplication_boundary)
         while action in duplicate_numbers or action % number != 0:
@@ -90,6 +90,7 @@ def addition():
     while True:
         correct_answers = 0
         total_responses = 0  #всего ответов
+        duplicate_numbers = []
         action = randint(0, 100)
         right_answer = action + number
         print(action, "+", number, "=")
@@ -124,6 +125,7 @@ def subtraction():
     while True:
         correct_answers = 0
         total_responses = 0  #всего ответов
+        duplicate_numbers = []
         action = randint(number, 100)
         right_answer = action - number
         print(action, "-", number, "=")
