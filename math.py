@@ -1,10 +1,10 @@
 from random import randint
 from colorama import init, Fore
 import pyglet
-from time import *
+from time import sleep
 init(autoreset = True)
 
-print("Привет! Добро пожаловать в тренировщик математики! version 6.0 (фикс багов и оптимизация)")
+print(Fore.CYAN +"Привет! Добро пожаловать в тренировщик математики! version 7.0 (огромный апдейт с звуками и цветами)")
 sleep(5)
 print("Здесь ты можешь тренировать свои навыки")
 sleep(5)
@@ -14,7 +14,7 @@ incorrect_answer = 0 #неправильных ответов
 action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
 number = int(input("Введите число с которым вы хотите играть"))
 
-def multiplication(x, y, z):
+def multiplication(x, y, z): #умножение
     correct_answers = 0
     incorrect_answer = 0
     total_responses = 0  #всего ответов
@@ -39,29 +39,44 @@ def multiplication(x, y, z):
             print(Fore.RED + "Ты ошибся,(лась)!")
             print(Fore.GREEN + "Правильный ответ -", right_answer)
             incorrect_answer += 1
-            if correct_answers % 10 == 0:
-                print("Количество правильных ответов - ", correct_answers)
-                yes_or_no = input("Хотите продолжить? (напишите да или нет)")
-                if yes_or_no == 'нет':
-                    break
-                if yes_or_no == 'да':
-                    duplicate_numbers = []
-                    action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
-                    if action == ':': #деление
-                        while True:
-                            division(x = 11)
-                    if action == '+': #сложение до нуля
-                        while True:
-                            addition()
-                    if action == '-': #вычитание до нуля
-                        while True:
-                            subtraction()
+        if total_responses % z == 0:
+            print("Количество правильных ответов - ", correct_answers)
+            yes_or_no = input("Хотите продолжить? (напишите да или нет)")
+            if yes_or_no == 'нет':
+                exit()
+            if yes_or_no == 'да':
+                duplicate_numbers = []
+                action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
+                if action == ':': #деление
+                    while True:
+                        if lvl == 'тренировка':
+                            division(z = 10)
+                        if lvl == 'контроль':
+                            division(z = 100)
+                        if lvl == 'итоговый тест':
+                            division(z = 100)
+                if action == '+': #сложение до нуля
+                    while True:
+                        if lvl == 'тренировка':
+                            addition(z = 10)
+                        if lvl == 'контроль':
+                            addition(z = 100)
+                        if lvl == 'итоговый тест':
+                            addition(z = 100)
+                if action == '-': #вычитание до нуля
+                    while True:
+                        if lvl == 'тренировка':
+                            subtraction(z = 10)
+                        if lvl == 'контроль':
+                            subtraction(z = 100)
+                        if lvl == 'итоговый тест':
+                            subtraction(z = 100)
 
-def division(x):
+def division(z): #деление
+    correct_answers = 0
+    total_responses = 0  #всего ответов
+    duplicate_numbers = []
     while True:
-        correct_answers = 0
-        total_responses = 0  #всего ответов
-        duplicate_numbers = []
         multiplication_boundary = number * 10
         action = randint(0, multiplication_boundary)
         while action in duplicate_numbers or action % number != 0:
@@ -80,31 +95,45 @@ def division(x):
             song1.play()
             print(Fore.RED + "Ты ошибся,(лась)!")
             print(Fore.GREEN + "Правильный ответ -", right_answer)
-        total_responses += 1
-        if total_responses % x == 0:
+        if total_responses % z == 0:
             print("Количество правильных ответов - ", correct_answers)
             yes_or_no = input("Хотите продолжить? (напишите да или нет)")
             if yes_or_no == 'нет':
-                break
+                exit()
             if yes_or_no == 'да':
                 duplicate_numbers = []
                 action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
                 if action == '*': #умножение
                     while True:
-                        multiplication(x = 0, y = 10, z = 10)
+                        if lvl == 'тренировка':
+                            multiplication(x = 0, y = 10, z = 10)
+                        if lvl == 'контроль':
+                            multiplication(x = 0, y = 100, z = 100)
+                        if lvl == 'итоговый тест':
+                            multiplication(x = 0, y = 100, z = 100)
                 if action == '+': #сложение до нуля
                     while True:
-                        addition()
+                        if lvl == 'тренировка':
+                            addition(z = 10)
+                        if lvl == 'контроль':
+                            addition(z = 100)
+                        if lvl == 'итоговый тест':
+                            addition(z = 100)
                 if action == '-': #вычитание до нуля
                     while True:
-                        subtraction()
+                        if lvl == 'тренировка':
+                            subtraction(z = 10)
+                        if lvl == 'контроль':
+                            subtraction(z = 100)
+                        if lvl == 'итоговый тест':
+                            subtraction(z = 100)
                 
 
-def addition():
+def addition(z): #сложение
+    correct_answers = 0
+    total_responses = 0  #всего ответов
+    duplicate_numbers = []
     while True:
-        correct_answers = 0
-        total_responses = 0  #всего ответов
-        duplicate_numbers = []
         action = randint(0, 100)
         right_answer = action + number
         print(action, "+", number, "=")
@@ -121,29 +150,44 @@ def addition():
             print(Fore.RED + "Ты ошибся,(лась)!")
             print(Fore.GREEN + "Правильный ответ -", right_answer)
         total_responses += 1
-        if total_responses % 10 == 0:
+        if total_responses % z == 0:
             print("Количество правильных ответов - ", correct_answers)
             yes_or_no = input("Хотите продолжить? (напишите да или нет)")
             if yes_or_no == 'нет':
-                break
+                exit()
             if yes_or_no == 'да':
                 duplicate_numbers = []
                 action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
                 if action == '*': #умножение
                     while True:
-                        multiplication(x = 0, y = 10, z = 10)
+                        if lvl == 'тренировка':
+                            multiplication(x = 0, y = 10, z = 10)
+                        if lvl == 'контроль':
+                            multiplication(x = 0, y = 100, z = 100)
+                        if lvl == 'итоговый тест':
+                            multiplication(x = 0, y = 100, z = 100)
                 if action == ':': #деление
                     while True:
-                        division(x = 11)
+                        if lvl == 'тренировка':
+                            division(z = 10)
+                        if lvl == 'контроль':
+                            division(z = 100)
+                        if lvl == 'итоговый тест':
+                            division(z = 100)
                 if action == '-': #вычитание до нуля
                     while True:
-                        subtraction()
+                        if lvl == 'тренировка':
+                            subtraction(z = 10)
+                        if lvl == 'контроль':
+                            subtraction(z = 100)
+                        if lvl == 'итоговый тест':
+                            subtraction(z = 100)
 
-def subtraction():
+def subtraction(z): #вычитание
+    correct_answers = 0
+    total_responses = 0  #всего ответов
+    duplicate_numbers = []
     while True:
-        correct_answers = 0
-        total_responses = 0  #всего ответов
-        duplicate_numbers = []
         action = randint(number, 100)
         right_answer = action - number
         print(action, "-", number, "=")
@@ -160,52 +204,67 @@ def subtraction():
             print(Fore.RED + "Ты ошибся,(лась)!")
             print(Fore.GREEN + "Правильный ответ -", right_answer)
         total_responses += 1
-        if total_responses % 10 == 0:
+        if total_responses % z == 0:
             print("Количество правильных ответов - ", correct_answers)
             yes_or_no = input("Хотите продолжить? (напишите да или нет)")
             if yes_or_no == 'нет':
-                break
+                exit()
             if yes_or_no == 'да':
                 duplicate_numbers = []
                 action = input('''Введите действие с которым вы хотите играть (* умножение, : деление без остатка, + сложение , - вычитание)''')
                 if action == '+': #сложение до нуля
                     while True:
-                        addition()
+                        if lvl == 'тренировка':
+                            addition(z = 10)
+                        if lvl == 'контроль':
+                            addition(z = 100)
+                        if lvl == 'итоговый тест':
+                            addition(z = 100)
                 if action == '*': #умножение
                     while True:
-                        multiplication(x = 0, y = 10, z = 11)
+                        if lvl == 'тренировка':
+                            multiplication(x = 0, y = 10, z = 10)
+                        if lvl == 'контроль':
+                            multiplication(x = 0, y = 100, z = 100)
+                        if lvl == 'итоговый тест':
+                            multiplication(x = 0, y = 100, z = 100)
                 if action == ':': #деление
                     while True:
-                        division(x = 11)
+                        if lvl == 'тренировка':
+                            division(z = 10)
+                        if lvl == 'контроль':
+                            division(z = 100)
+                        if lvl == 'итоговый тест':
+                            division(z = 100)
 
 if lvl == 'тренировка':
     if action == '*': #умножение
         multiplication(x = 0, y = 10, z = 10)
     if action == ':': #деление
-        division(x = 11)
+        division(z = 10)
     if action == '+': #сложение до нуля
-        addition()
+        addition(z = 10)
     if action == '-': #вычитание до нуля
-        subtraction()
+        subtraction(z = 10)
 
 if lvl == 'контроль':
     if action == '*': #умножение
-        multiplication(x = 0, y = 10, z = 10)
+        multiplication(x = 0, y = 100, z = 100)
     if action == ':': #деление
-        division(x = 11)
+        division(z = 100)
     if action == '+': #сложение до нуля
-        addition()
+        addition(z = 100)
     if action == '-': #вычитание до нуля
-        subtraction()
+        subtraction(z = 100)
 
 if lvl == 'итоговый тест':
     if action == '*': #умножение
         multiplication(x = 0, y = 100, z = 100)
     if action == ':': #деление
-        division(x = 100)
+        division(z = 100)
     if action == '+': #сложение до нуля
-        addition()
+        addition(z = 100)
     if action == '-': #вычитание до нуля
-        subtraction()
+        subtraction(z = 100)
 
 pyglet.app.run()
